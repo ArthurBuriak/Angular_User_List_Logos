@@ -1,0 +1,51 @@
+<div class="wrapper">
+  <div class="header">
+    <h1>Angular user task</h1>
+  </div>
+  <div class="container" style="margin-top: 150px">
+    <div class="row">
+      <div class="col-6">
+        <form>
+          <div class="mb-3">
+            <label for="login" class="form-label">Email address</label>
+            <input type="text" [(ngModel)]="objDataUser.login" name="login" class="form-control" id="login">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" [(ngModel)]="objDataUser.password" name="password" class="form-control" id="password">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" [(ngModel)]="objDataUser.email" name="email" class="form-control" id="email">
+          </div>
+          <div *ngIf="isChangeButton; else unset"><button type="button" (click)="addButton()" class="btn btn-primary">Submit</button></div>
+          <ng-template #unset><button type="submit" class="btn btn-info" (click)="editNewUser()">Edit User</button></ng-template> 
+        </form>
+      </div>
+      <div class="col-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Login</th>
+              <th scope="col">Password</th>
+              <th scope="col">Email</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of newUserDataArray; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ data.login }}</td>
+              <td>{{ data.password }}</td>
+              <td>{{ data.email }}</td>
+              <td><button type="button" class="btn btn-warning" (click)="editUser(i)">Edit</button></td>
+              <td><button type="button" class="btn btn-danger" (click)="deleteUser(i)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
